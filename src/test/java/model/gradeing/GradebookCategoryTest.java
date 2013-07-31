@@ -14,6 +14,4 @@ public class GradebookCategoryTest {
 		assertTrue(category.getCategoryName().equals("Physical Labor"));
 		assertTrue(category.getWeight() == 0.5);
 	}
-
-	
 }

@@ -12,6 +12,10 @@ import model.grading.scheme.DefaultGradingScheme;
  * @author Joonho
  */
 public class Section implements Gradable {
+    private static int globalCount;
+    private static final int COUNTMOD = 51;
+
+    private String sectionID;
     private Class sectionClass;
     private Collection<Student> students;
 
@@ -19,6 +23,8 @@ public class Section implements Gradable {
         this.sectionClass = sectionClass;
         this.sectionClass.addSection(this);
         students = new ArrayList<>();
+        globalCount++;
+        sectionID = sectionClass.getClassID() + (globalCount % COUNTMOD);
     }
 
     public void addStudent(Student newStu) {
@@ -55,5 +61,9 @@ public class Section implements Gradable {
 
     public Collection<Student> getStudents() {
         return students;
+    }
+
+    public String getID() {
+        return sectionID;
     }
 }

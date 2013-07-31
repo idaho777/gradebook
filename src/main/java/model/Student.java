@@ -13,9 +13,12 @@ import model.grading.scheme.GradingScheme;
  * @author Joonho
  */
 public class Student implements Gradable {
+    private static int globalCount;
+
     private String name;
     private Section classSection;
     private GradingScheme gradingScheme;
+    private String studentID;
 
     private Collection<GradebookItem> gradebookItems;
 
@@ -26,6 +29,8 @@ public class Student implements Gradable {
         classSection.addStudent(this);
         gradingScheme = section.getSectionClass().getGradingScheme();
         gradebookItems = new HashSet<>();
+        globalCount++;
+        studentID = name + globalCount;
     }
 
     public void addGradebookItem(GradebookItem item) {
@@ -64,5 +69,9 @@ public class Student implements Gradable {
 
     public Collection<GradebookItem> getGradebookItems() {
         return gradebookItems;
+    }
+
+    public String getID() {
+        return studentID;
     }
 }

@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,6 +16,7 @@ public class Class implements Gradable {
     private String className, semester;
     private Course classCourse;
     private GradingScheme gradingScheme;
+    private String classID;
 
     private Collection<Section> sections;
 
@@ -31,6 +31,7 @@ public class Class implements Gradable {
         this.className = name;
         this.gradingScheme = customScheme;
         this.sections = new ArrayList<>();
+        classID = className.concat(semester);
         classCourse.addClasses(this);
     }
 
@@ -49,8 +50,6 @@ public class Class implements Gradable {
     public char calculateLetter() {
         return new DefaultGradingScheme().getLetterGrade(this);
     }
-
-
     public String getClassName() {
         return className;
     }
@@ -69,5 +68,9 @@ public class Class implements Gradable {
 
     public Collection<Section> getSections() {
         return sections;
+    }
+
+    public String getClassID() {
+        return classID;
     }
 }
